@@ -157,7 +157,7 @@ namespace EjerciciosNET
            
             string[] ValoresDisponibles = new string[] { "1","2","3","4","5","6","7","8","9"};
             int value = 0;
-            for (int i = 0; i < 3; i++)
+            for (int m = 0; m < 3; m++)
             {
                 Console.WriteLine(ValoresDisponibles[value] + " | " + ValoresDisponibles[value + 1] + " | " + ValoresDisponibles[value + 2]);
                 value += 3;
@@ -185,6 +185,12 @@ namespace EjerciciosNET
                             valorIntroducido != "7" && valorIntroducido != "8" &&
                             valorIntroducido != "9")
                         {
+                            value = 0;
+                            for (int m = 0; m < 3; m++)
+                            {
+                                Console.WriteLine(ValoresDisponibles[value] + " | " + ValoresDisponibles[value + 1] + " | " + ValoresDisponibles[value + 2]);
+                                value += 3;
+                            }
                             Console.WriteLine("Introduce un valor válido");
                             valorIntroducidoCorrecto = false;
                         }
@@ -192,6 +198,12 @@ namespace EjerciciosNET
                         {
                             if (ValoresDisponibles[Convert.ToInt32(valorIntroducido) - 1] == "X" || ValoresDisponibles[Convert.ToInt32(valorIntroducido) - 1] == "0")
                             {
+                                value = 0;
+                                for (int m = 0; m < 3; m++)
+                                {
+                                    Console.WriteLine(ValoresDisponibles[value] + " | " + ValoresDisponibles[value + 1] + " | " + ValoresDisponibles[value + 2]);
+                                    value += 3;
+                                }
                                 Console.WriteLine("Ese valor ya esta cogido");
                                 valorIntroducidoCorrecto = false;
                             }
@@ -255,6 +267,12 @@ namespace EjerciciosNET
                             valorIntroducido != "7" && valorIntroducido != "8" &&
                             valorIntroducido != "9")
                             {
+                                value = 0;
+                                for (int m = 0; m < 3; m++)
+                                {
+                                    Console.WriteLine(ValoresDisponibles[value] + " | " + ValoresDisponibles[value + 1] + " | " + ValoresDisponibles[value + 2]);
+                                    value += 3;
+                                }
                                 Console.WriteLine("Introduce un valor válido");
                                 valorIntroducidoCorrecto = false;
                             }
@@ -262,6 +280,12 @@ namespace EjerciciosNET
                             {
                                 if (ValoresDisponibles[Convert.ToInt32(valorIntroducido) - 1] == "X" || ValoresDisponibles[Convert.ToInt32(valorIntroducido) - 1] == "0")
                                 {
+                                    value = 0;
+                                    for (int m = 0; m < 3; m++)
+                                    {
+                                        Console.WriteLine(ValoresDisponibles[value] + " | " + ValoresDisponibles[value + 1] + " | " + ValoresDisponibles[value + 2]);
+                                        value += 3;
+                                    }
                                     Console.WriteLine("Ese valor ya esta cogido");
                                     valorIntroducidoCorrecto = false;
                                 }
