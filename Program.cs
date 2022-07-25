@@ -48,6 +48,8 @@ namespace EjerciciosNET
                     case 4:
                         TresEnRaya();
                         //Esto no va aun la victoria ni el empate
+
+                        //Pero tu te cree que a mi me importa
                         break;
 
                     default:
