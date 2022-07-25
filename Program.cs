@@ -165,19 +165,47 @@ namespace EjerciciosNET
             int[,] ArrayVictoria = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 }, { 1, 4, 7 },
             { 2, 5, 8 }, { 3, 6, 9 },{ 1, 5, 9 }, { 3, 5, 7 }};
             int[] ArrayPlayer1 = new int[5];
-            int[] ArrayPlayer2 = new int[4];
+            int[] ArrayPlayer2 = new int[5];
             bool end = false;
-            int valorIntroducido;
+            string valorIntroducido;
+            int valorConvertido = 0;
+            bool valorIntroducidoCorrecto = false;
+            int contadorTurnos = 0;
             do
             {
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < 6; i++)
                 {
-                    Console.WriteLine("Jugador 1 (X) Elige casilla");
-                    valorIntroducido = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("");
-                    ArrayPlayer1[i] = valorIntroducido;
-                    ValoresDisponibles[valorIntroducido - 1] = "X";
+                    do {
+                        Console.WriteLine("Jugador 1 (X) Elige casilla");
+                        valorIntroducido = Console.ReadLine();
+                        Console.WriteLine("");
+                        if (valorIntroducido != "1" && valorIntroducido != "2" &&
+                            valorIntroducido != "3" && valorIntroducido != "4" &&
+                            valorIntroducido != "5" && valorIntroducido != "6" &&
+                            valorIntroducido != "7" && valorIntroducido != "8" &&
+                            valorIntroducido != "9")
+                        {
+                            Console.WriteLine("Introduce un valor válido");
+                            valorIntroducidoCorrecto = false;
+                        }
+                        else
+                        {
+                            if (ValoresDisponibles[Convert.ToInt32(valorIntroducido) - 1] == "X" || ValoresDisponibles[Convert.ToInt32(valorIntroducido) - 1] == "0")
+                            {
+                                Console.WriteLine("Ese valor ya esta cogido");
+                                valorIntroducidoCorrecto = false;
+                            }
+                            else
+                            {
+                                valorConvertido = Convert.ToInt32(valorIntroducido);
+                                valorIntroducidoCorrecto = true;
+                            }
+                        }                         
+                    } while(valorIntroducidoCorrecto == false);
+                    ArrayPlayer1[i] = valorConvertido;
+                    ValoresDisponibles[valorConvertido - 1] = "X";
                     value = 0;
+                    contadorTurnos += 1;
                     int numerosEnRayaPlayer1 = 0;
                     for (int j = 0; j < 3; j++)
                     {
@@ -202,45 +230,81 @@ namespace EjerciciosNET
                                 }
                             }
                         }
-                        if (end == true)
-                        {
-                            break;
-                        }
-                    }
-                    Console.WriteLine("Jugador 2 (0) Elige casilla");
-                    valorIntroducido = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("");
-                    ArrayPlayer1[i] = valorIntroducido;
-                    ValoresDisponibles[valorIntroducido - 1] = "0";
-                    value = 0;
-                    int numerosEnRayaPlayer2 = 0;
-                    for (int j = 0; j < 3; j++)
-                    {
-                        Console.WriteLine(ValoresDisponibles[value] + " | " + ValoresDisponibles[value + 1] + " | " + ValoresDisponibles[value + 2]);
-                        value += 3;
-                    }
-                    for (int j = 0; j < 8; j++)
-                    {
-                        numerosEnRayaPlayer2 = 0;
-                        for (int k = 0; k < 3; k++)
-                        {
-                            for (int l = 0; l < 5; l++)
-                            {
-                                if (ArrayVictoria[j, k] == ArrayPlayer1[l])
-                                {
-                                    numerosEnRayaPlayer2 += 1;
-                                    if (numerosEnRayaPlayer2 == 3)
-                                    {
-                                        Console.WriteLine("Victoria Player 2 (0)");
-                                        end = true;
-                                    }
-                                }
-                            }
-                        }
                     }
                     if (end == true)
                     {
                         break;
+                    }
+                    if (contadorTurnos == 9)
+                    {
+                        Console.WriteLine("");
+                        Console.WriteLine("Empate");
+                        end = true;
+                        break;
+                    }                    
+                    if (!end)
+                    {
+                        do { 
+                            Console.WriteLine("Jugador 2 (0) Elige casilla");
+                            valorIntroducido = Console.ReadLine();
+                            Console.WriteLine("");
+
+                            if (valorIntroducido != "1" && valorIntroducido != "2" &&
+                            valorIntroducido != "3" && valorIntroducido != "4" &&
+                            valorIntroducido != "5" && valorIntroducido != "6" &&
+                            valorIntroducido != "7" && valorIntroducido != "8" &&
+                            valorIntroducido != "9")
+                            {
+                                Console.WriteLine("Introduce un valor válido");
+                                valorIntroducidoCorrecto = false;
+                            }
+                            else
+                            {
+                                if (ValoresDisponibles[Convert.ToInt32(valorIntroducido) - 1] == "X" || ValoresDisponibles[Convert.ToInt32(valorIntroducido) - 1] == "0")
+                                {
+                                    Console.WriteLine("Ese valor ya esta cogido");
+                                    valorIntroducidoCorrecto = false;
+                                }
+                                else
+                                {
+                                    valorConvertido = Convert.ToInt32(valorIntroducido);
+                                    valorIntroducidoCorrecto = true;
+                                }
+                            }
+                        } while (valorIntroducidoCorrecto == false) ;
+                        ArrayPlayer2[i] = valorConvertido;
+                        ValoresDisponibles[valorConvertido - 1] = "0";
+                        value = 0;
+                        contadorTurnos += 1;
+                        int numerosEnRayaPlayer2 = 0;
+                        for (int j = 0; j < 3; j++)
+                        {
+                            Console.WriteLine(ValoresDisponibles[value] + " | " + ValoresDisponibles[value + 1] + " | " + ValoresDisponibles[value + 2]);
+                            value += 3;
+                        }
+                        for (int j = 0; j < 8; j++)
+                        {
+                            numerosEnRayaPlayer2 = 0;
+                            for (int k = 0; k < 3; k++)
+                            {
+                                for (int l = 0; l < 5; l++)
+                                {
+                                    if (ArrayVictoria[j, k] == ArrayPlayer2[l])
+                                    {
+                                        numerosEnRayaPlayer2 += 1;
+                                        if (numerosEnRayaPlayer2 == 3)
+                                        {
+                                            Console.WriteLine("Victoria Player 2 (0)");
+                                            end = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (end == true)
+                        {
+                            break;
+                        }
                     }
                 }
             } while (end == false);            
